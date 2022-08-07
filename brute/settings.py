@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'seller',
     'django.contrib.sites',
     'allauth',
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'brute.urls'
 
@@ -96,6 +98,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         # For each OAuth based provider, either add a ``SocialApp``
@@ -154,3 +157,4 @@ LOGIN_REDIRECT_URL = 'home'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
