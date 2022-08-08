@@ -1,3 +1,4 @@
+{% load socialaccount %}
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +16,17 @@
             <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                 {% csrf_token %}
                 <h1 class="h3 mb-3">Create An Account </h1>
-                {% crispy form %}
+                {{form | crispy }}
                 {% if redirect_field_value %}
                 <input type="hidden" class="form-control" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
                 
-                <button class="btn btn-lg btn-primary btn-block" type="submit" style="margin-top:1rem;">Register</button>
+                <div style="margin-top:1rem;">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                <a href="{% provider_login_url 'google' %}" class="btn btn btn-danger btn-lg btn-block" role="button" aria-pressed="true">Sign in with Google</a>
+
+                </div>
+                
             </form>
               <div>
                 <small>i already hava an acoount <span><a href="/accounts/login/"> Login Here</a></span></small>

@@ -16,7 +16,7 @@
             <form class="form-signin" method="POST" action="{% url 'account_login' %}" >
                 {% csrf_token %}
                 <h1 class="h3 mb-3">Please sign in</h1>
-                {% crispy form %}
+                {{form | crispy }}
                 {% if redirect_field_value %}
                 <input type="hidden" class="form-control" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                 {% endif %}
