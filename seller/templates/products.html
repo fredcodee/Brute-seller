@@ -7,7 +7,8 @@
 <a href="/addproduct"><button>Add Products</button></a>
     {% if products|length > 0 %}
         {% for product in products %}
-            <p>{{product.name}} -- stock - {{product.stock}}-- price-${{product.price}}</p>
+            <p>{{product.name}} -- stock - {{product.stock}}-- price-${{product.price}}</p> 
+            <a href="{% url 'edit_product' product.id %}">edit</a>
         {%endfor%}
     {% else%}
         <p>You have no Products to sell</p>

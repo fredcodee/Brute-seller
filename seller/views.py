@@ -1,8 +1,8 @@
-import profile
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib import messages
+from .forms import ProductForm
 
 
 
@@ -48,7 +48,7 @@ def create_shop(request):
 #view product
 @login_required(login_url="login")
 def view_products(request):
-    products = Product.objects.filter(profile__user = request.user)
+    products = Product.objects.filter(profile__user = request.user).all()
     context = { 'products':products}
     return render(request, "products.html", context)
 
@@ -77,7 +77,31 @@ def add_products(request):
 
 
 #edit product
+@login_required(login_url='login')
+def edit_products(request, product_id):
+    products = Product.objects.filter(profile__user = request.user).all()
+    get_product = Product.objects.get(pk = product_id)
+    form = ProductForm(instance=get_product)
+     
+    if request.method == 'POST':
+        if get_product in products:
+            form = ProductForm(request.POST, instance = get_product)#add request.FILES
+            if form.is_valid():
+                form.save()
+            messages.success(request, "Changes saved.")
+            return redirect("products")
+            
+            
+        else:
+            messages.error(request, "Unauthorized Access")
+            return redirect("products")
 
+    context = {
+        'product':get_product,
+        'form':form
+    }
+    
+    return render(request, 'edit_product.html', context)
 
 #view store
 #shoplink (view product)
