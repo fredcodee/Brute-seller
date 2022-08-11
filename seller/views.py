@@ -128,5 +128,34 @@ def edit_store(request, profile_id):
 
 
 
-#view store
+#view store for (USER & SELLER)
+@login_required(login_url="login")
+def store(request, profile_name):
+    get_store = Profile.objects.filter(name = profile_name )
+
+    if get_store.exists():
+        get_store = get_store.first()
+        products = Product.objects.filter(profile = get_store).all()
+
+
+        context= {
+            'store': get_store,
+            'products':products
+        }
+        return  render(request, "store.html", context)
+
+    else:
+        messages.error(request, "The store does not exist")
+        return redirect("home")
+
+
+
+
+    
+
 #shoplink (view product)
+
+#user
+#view product
+#reviews
+#ratings

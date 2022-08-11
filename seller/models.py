@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
-    name = models.CharField(max_length= 200, null=True)
+    name = models.CharField(max_length= 200, null=True, unique=True)
     bio = models.CharField(max_length=500, null=True)
     logo = models.ImageField(null = True, blank = True, upload_to = 'images/profiles')
     #product quality (average review)
