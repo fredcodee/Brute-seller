@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +13,25 @@
 <body>
     <div class="container">
         <nav class="nav">
-            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-            <a class="nav-link" href="#">Products</a>
+            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+            <a class="nav-link" href="dashboard/products">Products</a>
             <a class="nav-link" href="#">Payments</a>
             <a class="nav-link" href="#">Settings</a>
           </nav>
+        {% for message in messages %}
+            <p class="alert alert-secondary" style="text-align: center;">{{ message }}</p>
+        {% endfor %}
+
+        {% block contents%}
         <div>
-            {% if not shop %}
+            {% if not store%}
                 <a href="/createstore"><button>Create Shop</button></a>
-            {% endif %}
-                
+            {% endif %}                
         </div>
+        <div>
+            <h3>{{ store.name }}</h3>
+        </div>
+        {%endblock%}
     </div>
 
     
