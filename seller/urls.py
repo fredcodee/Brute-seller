@@ -9,5 +9,5 @@ urlpatterns = [
     path('dashboard/products', views.view_products, name='products'),
     path('product/add', views.add_products, name="add_product" ),
     path('product/edit/<int:product_id>', views.edit_products, name="edit_product"),
-
+    path('mystore/edit/<int:profile_id>', views.edit_store, name="edit_store"),
 ]

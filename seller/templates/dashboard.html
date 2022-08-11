@@ -14,7 +14,7 @@
     <div class="container">
         <nav class="nav">
             <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-            <a class="nav-link" href="dashboard/products">Products</a>
+            <a class="nav-link" href="{% url 'products'%}">Products</a>
             <a class="nav-link" href="#">Payments</a>
             <a class="nav-link" href="#">Settings</a>
           </nav>
@@ -25,11 +25,11 @@
         {% block contents%}
         <div>
             {% if not store%}
-                <a href="/createstore"><button>Create Shop</button></a>
+                <a href="{% url 'createstore'%}"><button>Create Shop</button></a>
             {% endif %}                
         </div>
         <div>
-            <h3>{{ store.name }}</h3>
+            <a href="{% url 'edit_store' store.id %}"><h3>{{ store.name }}</h3></a>
         </div>
         {%endblock%}
     </div>

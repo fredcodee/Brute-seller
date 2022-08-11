@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
     name = models.CharField(max_length= 200, null=True)
-    #profilepicture 
     bio = models.CharField(max_length=500, null=True)
+    logo = models.ImageField(null = True, blank = True, upload_to = 'images/profiles')
     #product quality (average review)
 
     def __str__(self):
@@ -21,9 +21,9 @@ class Product(models.Model):
     profile = models.ForeignKey(Profile, on_delete= models.CASCADE, blank=True)
     name = models.CharField(max_length=150, null=True)
     description = models.CharField(max_length=200, null=True)
-    #image
     stock = models.IntegerField(default=0,null= True, blank=True)
     price = models.FloatField()
+    image = models.ImageField(null = True, blank = True,upload_to = 'images/products')
 
     def __str__(self):
         return self.name

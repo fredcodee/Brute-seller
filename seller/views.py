@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib import messages
-from .forms import ProductForm
+from .forms import ProductForm, StoreForm
 
 
 
@@ -85,7 +85,7 @@ def edit_products(request, product_id):
      
     if request.method == 'POST':
         if get_product in products:
-            form = ProductForm(request.POST, instance = get_product)#add request.FILES
+            form = ProductForm(request.POST, request.FILES, instance = get_product)
             if form.is_valid():
                 form.save()
             messages.success(request, "Changes saved.")
@@ -102,6 +102,31 @@ def edit_products(request, product_id):
     }
     
     return render(request, 'edit_product.html', context)
+
+
+#edit store
+@login_required(login_url='login')
+def edit_store(request, profile_id):
+    store = Profile.objects.get(pk = profile_id)
+    form = StoreForm(instance=store)
+
+    if request.method == 'POST':
+        form = StoreForm(request.POST, request.FILES, instance=store)
+        if form.is_valid():
+            form.save()
+        messages.success(request, "CHanges saved")
+        return redirect("dashboard")
+
+
+
+    context = {
+        'store':store,
+        'form':form
+    }
+
+    return render(request, 'edit_store.html', context)
+
+
 
 #view store
 #shoplink (view product)
