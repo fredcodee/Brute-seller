@@ -6,27 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/homepage/home.css' %}">
     <title>Brute-Seller</title>
 </head>
 <body>
-    <div class="container">
-    {% for message in messages %}
-        <p class="alert alert-secondary" style="text-align: center;">{{ message }}</p>
-    {% endfor %}
-    <h1>Welcome to the homepage</h1>
-    <h1>Digital selling with ease</h1>
-    <p>Sell tokens, serial keys, digital downloads, video courses, softwares and licenses in a fast, easy and secure way.</p>
-    {% if user.is_authenticated %}
-        <p>{{request.user}}</p>
-        <a href="/accounts/logout/"><button>Logout</button></a>
-        
-    {% else %}
-        <a href="/accounts/login/"><button>Login</button></a>
-        <a href="/accounts/signup/"><button>Start Here</button></a>
-    {% endif %}
-    </div>
-    
+  <section class="showcase">
+    <header>
+      <h2 class="logo">Brute-Seller</h2>
+      <div class="toggle"></div>
+    </header>
+    <video src="{% static 'style/homepage/home.mp4'%}" muted loop autoplay></video>
+    <div class="overlay"></div>
+    <div class="text">
+      <h3>Digital selling with ease</h3>
+      <p>Sell tokens, serial keys, digital downloads, video courses, softwares and licenses in a fast, easy and secure way.</p>
+      {% if user.is_authenticated %}
+        <a href="/accounts/logout/">Logout</a>
+      {% else %}
+        <a href="/accounts/login/">Login</a>
+        <a href="/accounts/signup/">Start Here</a>
+      {% endif %}
 
+    </div>
+    <ul class="social">
+      <li><a href="#"><img src="https://i.ibb.co/x7P24fL/facebook.png"></a></li>
+      <li><a href="#"><img src="https://i.ibb.co/Wnxq2Nq/twitter.png"></a></li>
+      <li><a href="#"><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a></li>
+    </ul>
+  </section>
+  <div class="menu">
+    <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="/accounts/logout/">Logout</a></li>
+        {% else %}
+        <li><a href="/accounts/signup/">Start Here</a></li>
+        <li><a href="/accounts/login/">Login</a></li>
+        <li><a href="#">Contact</a></li>
+        {% endif %}
+    </ul>
+  </div>
+    
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 </body>
