@@ -41,7 +41,7 @@ def create_shop(request):
             messages.success(request, "You Have created your store.")
             return redirect("dashboard")
 
-    return render(request,"createstore.html")
+    return render(request,"createstore.html", store = False)
 
 
 
@@ -49,6 +49,7 @@ def create_shop(request):
 @login_required(login_url="login")
 def view_products(request):
     products = Product.objects.filter(profile__user = request.user).all()
+    store = Profile.objects.filter(user = request.user).first()
 
     context = { 'products':products, 'store': store}
     return render(request, "products.html", context)
@@ -74,12 +75,14 @@ def add_products(request):
         else:
             messages.error(request, "You have no current store")
             return redirect("dashboard")
-    return render(request,"add_product.html")
+    context ={ 'store': store.first()}
+    return render(request,"add_product.html", context)
 
 
 #edit product
 @login_required(login_url='login')
 def edit_products(request, product_id):
+    store = Profile.objects.filter(user = request.user).first()
     products = Product.objects.filter(profile__user = request.user).all()
     get_product = Product.objects.get(pk = product_id)
     form = ProductForm(instance=get_product)
@@ -99,7 +102,7 @@ def edit_products(request, product_id):
 
     context = {
         'product':get_product,
-        'form':form
+        'form':form, 'store':store
     }
     
     return render(request, 'edit_product.html', context)
@@ -117,28 +120,30 @@ def delete_product(request, product_id):
 @login_required(login_url='login')
 def edit_store(request, profile_id):
     store = Profile.objects.get(pk = profile_id)
-    form = StoreForm(instance=store)
 
-    if request.method == 'POST':
-        form = StoreForm(request.POST, request.FILES, instance=store)
-        if form.is_valid():
-            form.save()
-        messages.success(request, "CHanges saved")
-        return redirect("dashboard")
+    if store:
+        form = StoreForm(instance=store)
 
+        if request.method == 'POST':
+            form = StoreForm(request.POST, request.FILES, instance=store)
+            if form.is_valid():
+                form.save()
+            messages.success(request, "CHanges saved")
+            return redirect("dashboard")
 
+        context = {
+            'store':store,
+            'form':form
+        }
 
-    context = {
-        'store':store,
-        'form':form
-    }
+        return render(request, 'edit_store.html', context)
 
-    return render(request, 'edit_store.html', context)
+    else:
+        return redirect("createstore")
 
 
 
 #view store for (USER & SELLER)
-@login_required(login_url="login")
 def store(request, profile_name):
     get_store = Profile.objects.filter(name = profile_name )
 
@@ -161,7 +166,13 @@ def store(request, profile_name):
 
 
     
-# delete store 
+# delete store
+@login_required(login_url='login')
+def delete_store(request, store_id):
+    store = Profile.objects.get(pk=store_id)
+    store.delete()
+    messages.success(request, "store deleted")
+    return redirect("Dashboard")
 
 #shoplink (view product)
 

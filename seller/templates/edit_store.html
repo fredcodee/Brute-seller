@@ -6,6 +6,8 @@
 
 {% block header %}
 <h1 class="h3 mb-0 text-gray-800">Edit Store</h1>
+<a href="{% url 'delete_store' store.id %}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+    class="fas fa-download fa-sm text-white-50"></i> Delete Store</a>
 {% endblock %}
 {% block contents %}
 <form action="" method="POST" enctype="multipart/form-data">
