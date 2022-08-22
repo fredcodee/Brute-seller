@@ -1,10 +1,17 @@
-{% extends 'Dashboard.html '%}
-{% block title%}
-    <title>Add Product</title>
-{%endblock%}
+{% extends 'index.html' %}
+{% block title %}
+<title>Add Products</title>
+{% endblock %}
+
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">Add Products</h1>
+{% endblock %}
 
 {% block contents %}
-<h3>Add Product</h3>
+<div style="text-align:center;">
+    <h3>Add Product</h3>
+</div>
+
 <form action="" method="post">
     {% csrf_token %}
         <div class="mb-3">
@@ -23,7 +30,10 @@
             <label for="exampleInputEmail1" class="form-label">Stock</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="stock" required>
         </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+        <div style="text-align:center;">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+          
 
 </form>
 {%endblock%}

@@ -22,7 +22,7 @@ def dashbaord(request):
     store = Profile.objects.filter(user = request.user).first()
     
     context={'store':store,}
-    return render(request, "dashboard.html", context)
+    return render(request, "index.html", context)
 
 
 #create shop
@@ -49,7 +49,8 @@ def create_shop(request):
 @login_required(login_url="login")
 def view_products(request):
     products = Product.objects.filter(profile__user = request.user).all()
-    context = { 'products':products}
+
+    context = { 'products':products, 'store': store}
     return render(request, "products.html", context)
 
 
@@ -103,6 +104,14 @@ def edit_products(request, product_id):
     
     return render(request, 'edit_product.html', context)
 
+#delete product
+@login_required(login_url='login')
+def delete_product(request, product_id):
+    product = Product.objects.get(pk = product_id)
+    product.delete()
+    messages.success(request, "Item deleted")
+    return redirect("products")
+
 
 #edit store
 @login_required(login_url='login')
@@ -152,6 +161,7 @@ def store(request, profile_name):
 
 
     
+# delete store 
 
 #shoplink (view product)
 

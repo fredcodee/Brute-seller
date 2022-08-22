@@ -1,7 +1,11 @@
-{% extends 'Dashboard.html '%}
-{% block title%}
-    <title>Create Store</title>
-{%endblock%}
+{% extends 'index.html' %}
+{% block title %}
+<title>Create Store</title>
+{% endblock %}
+
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">Create Store</h1>
+{% endblock %}
 
 {% block contents %}
 <div>
@@ -15,7 +19,10 @@
             <label for="exampleInputEmail1" class="form-label">Bio</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="bio">
         </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+        <div style="text-align:center;">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+          
     </form>
 </div>
 {%endblock%}

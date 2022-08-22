@@ -1,17 +1,30 @@
-{% extends 'dashboard.html' %}
+{% extends 'index.html' %}
 {% block title %}
 <title>Products</title>
 {% endblock %}
 
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">Products</h1>
+{% endblock %}
+
 {% block contents %}
-<a href="{% url 'add_product' %}"><button>Add Products</button></a>
+<div style="text-align:center;">
+<a href="{% url 'add_product' %}" ><button class="btn btn-primary">Add Products</button></a>
+</div>
+
+<div class="list">
     {% if products|length > 0 %}
         {% for product in products %}
-            <p>{{product.name}} -- stock - {{product.stock}}-- price-${{product.price}}</p> 
-            <a href="{% url 'edit_product' product.id %}">edit</a>
+            <div class="card mb-4 py-3 border-left-primary" style="margin-top:2rem;">
+                <div class="card-body">
+                    <h2 style="color:black;">{{product.name|title}} -${{product.price}}</h2> 
+                    <a href="{% url 'edit_product' product.id %}">Edit</a> | <a href="{% url 'delete_product' product.id %}" style="color:red;">Delete</a>
+                </div>
+            </div>
         {%endfor%}
     {% else%}
-        <p>You have no Products to sell</p>
+        <h1 class="h3 mb-1 text-gray-800">You have no Products to sell</p>
     {% endif %}
+</div>
         
 {% endblock %}

@@ -26,11 +26,14 @@
         <div>
             {% if not store%}
                 <a href="{% url 'createstore'%}"><button>Create Shop</button></a>
+
+            {% else %}
+                <div>
+                    <a href="{% url 'store' store.name %}"><h3>{{ store.name }}</h3></a>
+                </div>
             {% endif %}                
         </div>
-        <div>
-            <a href="{% url 'store' store.name %}"><h3>{{ store.name }}</h3></a>
-        </div>
+        
         {%endblock%}
     </div>
 

@@ -161,3 +161,7 @@ LOGIN_REDIRECT_URL = 'dashboard'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+#to avoid google confirmation login
+SOCIALACCOUNT_LOGIN_ON_GET=True

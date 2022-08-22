@@ -1,15 +1,18 @@
-{% extends 'Dashboard.html '%}
+{% extends 'index.html' %}
 {% load crispy_forms_tags %}
-{% block title%}
-    <title>Edit Product</title>
-{%endblock%}
+{% block title %}
+<title>Edit Product</title>
+{% endblock %}
+
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">Edit Product</h1>
+{% endblock %}
 
 {% block contents %}
-<h3>Edit Product</h3>
 <form action="" method="POST" enctype="multipart/form-data">
     {%csrf_token%}
     {{form | crispy }}
-    <div>
+    <div style="text-align:center;">
         <input type="submit">
     </div>
 </form>

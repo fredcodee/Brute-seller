@@ -1,8 +1,12 @@
-{% extends 'Dashboard.html '%}
-{% load crispy_forms_tags %}
-{% block title%}
-    <title>{{store.name}}</title>
-{%endblock%}
+{% extends 'index.html' %}
+{% block title %}
+<title>{{store.name}}</title>
+{% endblock %}
+
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">My Store</h1>
+{% endblock %}
+
 
 {% block contents %}
 <h1>{{store.name}}</h1>
