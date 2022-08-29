@@ -1,0 +1,415 @@
+html{
+    background-color: #0A1730;
+    --menuBackgroundRGBA: 249, 249, 250;
+    --menuBoxShadow: #0000;
+    --colorSwitcher: #233453;
+    --gridLine: #233453;
+    --borderColor: #233453;
+    --buttonColor: #5F40E5;
+    --darkColorTransparent: #233453;
+    --darkColor: #0A1730;
+    --darkFontColor: #b4aebc;
+    --lightColor: #192843;
+    --lightFontColor: #ffffff;
+    --sidebarFontColor: #C9C9CB;
+    --sidebarBorder: #233453;
+    --thinColor: #989ba0;
+    --invoiceButton: #ffffff;
+    --inputBorder: #233453;
+    --inputBorderHover: #3F4A60;
+    --inputBorderFocus: #613BEA;
+    --checkbox-border: #3F4A60;
+    --htmlBack: #0A1730;
+    --menuBackgroundHover: rgba(249, 249, 250, 10%);
+}
+
+body{
+    transition: background .9s;
+    background-color: #0000;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    font-family: "Inter Var",sans-serif !important;
+}
+
+.header{
+    border-bottom: 1px solid var(--borderColor);
+    position: relative;
+    height: 60px;
+    flex: 0 0 60px;
+    color: white;
+}
+
+.contents{
+    flex-direction: column;
+    position: relative;
+    flex: 1 0 auto;
+    display: flex;
+}
+
+.sellix-banner-container{
+    max-width: 1140px;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.sellix-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    height: auto;
+    border: 1px solid var(--borderColor);
+    border-radius: .5rem;
+    margin: 2rem auto;
+    background: var(--lightColor);
+
+}
+
+.sellix-banner.products-sold-hide .sellix-banner-info {
+    width: 75%;
+  }
+
+.sellix-banner-info {
+    width: 55%;
+    border-right: 1px solid var(--borderColor);
+    display: flex;
+    align-items: center;
+    margin: 1.5rem;
+  }
+
+
+
+  .sellix-banner.products-sold-hide .sellix-banner-feedback {
+    width: 25%;
+  }
+  .sellix-banner-feedback {
+    font-size: 1rem;
+    color: var(--lightFontColor);
+    margin-right: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+    font-weight: 400;
+  }
+
+
+  .sellix-banner-avatar-container {
+    position: relative;
+  }
+
+  .sellix-banner-description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sellix-banner-description > div {
+    display: flex;
+    align-items: center;
+  }
+
+  .sellix-banner-subscription {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5f40e514;
+    color: #8a72ef;
+    text-transform: capitalize;
+    padding: .1rem .5em;
+    font-weight: 700;
+    border-radius: .25rem;
+    font-size: 14px;
+    height: 29px;
+  }
+
+
+  .sellix-banner-info-message {
+    color: var(--darkFontColor);
+    font-weight: 300;
+    margin-top: .5rem;
+    padding-right: 1rem;
+    font-size: 13px;
+    line-height: 1rem;
+    opacity: .7;
+  }
+
+  .sellix-banner-feedback-star {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    margin-top: .75rem;
+    font-size: 18px;
+    color: var(--lightFontColor);
+  }
+  .sellix-banner-feedback-star > span:first-of-type {
+    margin-right: .5rem;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .sellix-banner-feedback-star span {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+.sellix-banner-navs {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto 1.5rem;
+  position: relative;
+}
+
+.sellix-banner-navs > div {
+    width: 50%;
+    padding: .5rem 0 0 0;
+    flex-wrap: nowrap;
+  }
+  .sellix-banner-navs::before {
+    position: absolute;
+    bottom: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: var(--borderColor);
+    z-index: 0;
+  }
+
+  .sellix-banner-navs > div a {
+    text-decoration: none;
+    color: #ffffff !important;
+    border-bottom: 1px solid transparent;
+    padding: .5rem .75rem;
+    font-size: 14px;
+    transition: all .3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: .5rem .5rem 0 0;
+    display: inline-flex;
+  }
+
+  .sellix-banner-navs > div a.active {
+    color: var(--buttonColor) !important;
+    border-bottom-color: #5F40E5;
+    background: var(--darkColor);
+    border-radius: .25rem .25rem 0 0;
+    position: relative;
+  }
+
+.sellix-product-list-container{
+    max-width: 1140px;
+    width: 100%;
+    flex: 1 0 auto;
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+.sellix-product-list {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.sellix-product-list-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: .75rem;
+  width: calc(100% + 1.5rem);
+  margin-left: -0.75rem;
+}
+
+.sellix-shop-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: .5rem;
+  padding: 0 .75rem;
+  width: 50%;
+  margin-bottom: 0;
+}
+.sellix-shop-search i {
+  position: absolute;
+  right: 3rem;
+  font-size: 14px;
+  margin-top: 1px;
+  color: var(--lightFontColor) !important;
+}
+.far, .fa-regular {
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 400;
+}
+
+.fa-search::before {
+  content: "";
+}
+
+.sellix-shop-search input {
+  border-radius: .5rem;
+  padding: 1rem 2.5rem 1rem 1rem;
+  font-size: 14px;
+  color: var(--lightFontColor);
+  background-color: var(--lightColor);
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid var(--borderColor);
+  width: 100%;
+  height: 3rem;
+  font-family: "Inter Var",sans-serif !important;
+}
+
+.sellix-product-list .infinite-scroll-component__outerdiv {
+  width: calc(100% + 1.5rem);
+  margin-left: -0.75rem;
+}
+
+.sellix-product-list .infinite-scroll-component__outerdiv > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sellix-product-list-body {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sellix-product-list-card-container {
+  display: flex;
+  padding: .75rem;
+  width: 25%;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+.d-flex {
+  display: flex !important;
+}
+.position-relative {
+  position: relative !important;
+}
+
+.sellix-card-container {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  flex-grow: 1;
+  border: 1px solid var(--borderColor);
+  cursor: pointer;
+  border-radius: .5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.sellix-card {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  flex-grow: 1;
+  background: var(--lightColor);
+}
+
+.sellix-card-image {
+  min-height: 180px;
+  margin: 0 auto;
+  width: 100%;
+  border-bottom: 1px solid var(--borderColor);
+}
+.sellix-card-image img {
+  width: 100%;
+  height: 180px;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  object-fit: cover;
+}
+
+.sellix-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: .75rem;
+  flex: 1 1 auto;
+}
+.sellix-card-title {
+  font-size: 1rem;
+  display: flex;
+  width: 100%;
+  color: var(--lightFontColor);
+  line-height: 1.5rem;
+  align-items: center;
+}
+
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.sellix-card-description {
+  display: flex;
+  justify-content: center;
+  line-height: 1.25rem;
+  margin-top: .75rem;
+  font-size: 14px;
+  color: var(--lightFontColor);
+  align-items: flex-end;
+}
+.sellix-card-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--buttonColor);
+}
+
+.sellix-card-stock {
+  font-size: 14px;
+  color: var(--darkFontColor);
+  opacity: .7;
+  margin-right: .25rem;
+}
+
+.sellix-footer-wrapper {
+  background: var(--darkColor);
+  color: var(--darkFontColor);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 24px 24px 0 0;
+  z-index: 1;
+}
+.sellix-social.no-crisp {
+  bottom: 1.25rem;
+  right: 1.25rem;
+}
+.sellix-social {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 5.6rem;
+  right: 2rem;
+  z-index: 9999;
+}
+
+.sellix-footer-copyright {
+  max-width: 1140px;
+  padding: 1.75rem;
+  margin: 0 auto;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--borderColor);
+}
+
+.sellix-footer-copyright a {
+  color: #6461fc;
+  text-decoration: none;
+  background-color: #0000;
+}

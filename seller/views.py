@@ -174,8 +174,9 @@ def delete_store(request, store_id):
     messages.success(request, "store deleted")
     return redirect("Dashboard")
 
-#shoplink (view product)
 
+
+#shoplink (view product)
 #user
 #view product
 #reviews

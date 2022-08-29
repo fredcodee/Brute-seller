@@ -1,24 +1,110 @@
-{% extends 'index.html' %}
-{% block title %}
-<title>{{store.name}}</title>
-{% endblock %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore {{store.name|title}}'s Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style/store/main.css'%}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>{{store.name|title}}</h2>
+        </div>
+        <div class="contents">
+            <div class="store">
+                <div class="sellix-banner-container">
+                    <div class="sellix-banner products-sold-hide">
+                        <div class="sellix-banner-info">
+                            <div class="sellix-banner-avatar-container">
+                               <img src="" alt="{{store.name}}"> 
+                            </div>
+                            <div class="sellix-banner-description">
+                                <div>
+                                    <div></div>
+                                    <div class="sellix-banner-subscription pro">Authorized Seller</div>
+                                </div>
+                                <div class="sellix-banner-info-message">
+                                    {{store.bio}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sellix-banner-feedback">
+                            <div></div>
+                            <div>
+                                <div>Product Quality</div>
+                                <div class="sellix-banner-feedback-star">
+                                    <span>
+                                        0.0 ratings
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sellix-banner-navs">
+                        <div>
+                            <a class="active" href="/">Products</a>
+                            <a class="" href="/contact">Contact</a>
+                            <a class="" href="/feedback">Feedback</a>
+                            <a class="" href="/terms">Terms</a>
+                            <a class="" href="/trust">Trusted&nbsp;<span>Advisor</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sellix-product-list-container">
+                    <div class="sellix-product-list">
+                        <div class="sellix-product-list-header">
+                            <label class="sellix-shop-search" for="shop-search">
+                                <i class="fa-regular fa-search"></i>
+                                <input id="shop-search" autocomplete="off" placeholder="Search for a product..." value="">
+                            </label>
+                        </div>
+                        <div class="infinite-scroll-component__outerdiv">
+                            <div class="infinite-scroll-component" style="height: auto; overflow: auto;">
+                                <div class="sellix-product-list-body" style="position: relative;">
+                                    {% for product in products%}
+                                    <div class="sellix-product-list-card-container" style="width: 25%;">
+                                        <div class="d-flex w-100 position-relative">
+                                            <div class="sellix-card-container">
+                                                <div class="sellix-card unselectable">
+                                                    <div class="sellix-card-image">
+                                                        <img src="{{product.image.url}}" alt="">
+                                                    </div>
+                                                    <div class="sellix-card-info">
+                                                        <div class="sellix-card-title">
+                                                            {{product.name|title}}
+                                                        </div>
+                                                        <div class="sellix-card-description justify-content-between">
+                                                            <span class="sellix-card-price">${{product.price}}</span>
+                                                            <span class="sellix-card-stock">Stock<span style="font-size:1rem;margin-left:.2rem;color:#28a745">{{product.stock}}</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-{% block header %}
-<h1 class="h3 mb-0 text-gray-800">My Store</h1>
-{% endblock %}
+        <footer class="sellix-footer-wrapper">
+            <div class="sellix-social no-crisp unselectable"></div>
+            <div class="sellix-footer-copyright">
+                        E-commerce solution created by 
+                        <a href="https://fredcodee.github.io/portfolio/" target="_blank">Fredcode</a>
+                    </div>
+        </footer>
+    </div>
 
-
-{% block contents %}
-<h1>{{store.name}}</h1>
-<p>{{store.bio}}</p>
-
-<h1>Products</h1>
-<div>
-    {% for product in products%}
-        <p>{{product.name}}</p>
-        <p>${{product.price}}</p>
-    {% endfor %}
-    <hr>
-</div>
-
-{%endblock%}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+</body>
+</html>
