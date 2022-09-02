@@ -1,14 +1,25 @@
-{% extends "layout.html" %}
+{% extends 'index.html' %}
 {% block title %}
-    <title>{{request.user}}</title>
+<title>Profile</title>
+{% endblock %}
+
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">Profile Details</h1>
 {% endblock %}
 
 {% block contents %}
-    
-    <h1>Welcome  {{request.user}}</h1>
-    
-
-
-
+<div>
+    <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">General Information</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4>Name: {{request.user}}</h4>
+                                    <h4>Email: {{request.user.email}}</h4>
+                                    <h4>Password: <span><a href="#" style="color:green;text-decoration:none;">change password</a></span></h4>
+                                    
+                                </div>
+                            </div>
+</div>
 
 {%endblock%}

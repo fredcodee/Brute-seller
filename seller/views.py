@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
@@ -9,12 +10,6 @@ from .forms import ProductForm, StoreForm
 def home(request):
     context = {}
     return render(request, "home.html", context)
-
-
-@login_required(login_url='login')
-def personal_details(request):
-    context = {}
-    return render(request, "account/profile.html", context)
 
 #dashboard
 @login_required(login_url="login")
@@ -177,7 +172,46 @@ def delete_store(request, store_id):
 
 
 #shoplink (view product)
-#user
-#view product
+def view_product(request, profile_name, product_id):
+    product = Product.objects.get(pk = product_id)
+    get_store = Profile.objects.filter(name = profile_name )
+
+    if product:
+        get_store = get_store.first()
+        context={
+            'product':product,
+            'store': get_store
+
+        }
+        return render(request, "view_product.html", context)
+    else:
+        messages.error(request, "Product not found")
+        return redirect("store")
+
+
+@login_required(login_url="login")
+def settings(request):
+    store = Profile.objects.filter(user = request.user).first()
+    #edit profile
+    #edit coins
+    context={
+        'store':store,
+
+    }
+
+    return render( request, "settings.html", context)
+
+@login_required(login_url='login')
+def payments(request):
+    pass
+
+@login_required(login_url='login')
+def personal_details(request):
+    context = {}
+    return render(request, "account/profile.html", context)
+#edit profile
+
+#user featues
+#buy
 #reviews
 #ratings

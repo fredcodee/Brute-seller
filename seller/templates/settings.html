@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block title %}
+<title>Settings</title>
+{% endblock %}
+
+{% block header %}
+<h1 class="h3 mb-0 text-gray-800">Settings</h1>
+{% endblock %}
+
+{% block contents %}
+<div>
+    <div>
+        <a href="#">Edit Profile</a>
+        </div>
+    <div>
+        <a href="{% url 'edit_store' store.id %}">Edit Store</a></div>
+    <div>
+        <a href="{% url 'payments' %}">Payments</a></div>
+    <div>
+        <a href="#">Notification</a></div>
+</div>
+
+{%endblock%}

@@ -44,6 +44,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="sellix-banner-navs">
                         <div>
                             <a class="active" href="/">Products</a>
@@ -71,7 +72,7 @@
                                             <div class="sellix-card-container">
                                                 <div class="sellix-card unselectable">
                                                     <div class="sellix-card-image">
-                                                        <img src="{{product.image.url}}" alt="">
+                                                        <a href="{% url 'product' store.name product.id %}"><img src="{{product.image.url}}" alt=""></a>
                                                     </div>
                                                     <div class="sellix-card-info">
                                                         <div class="sellix-card-title">
