@@ -13,9 +13,12 @@ class Profile(models.Model):
         return self.name
 
 class Coins(models.Model):
-    profile = models.ForeignKey(Profile, on_delete= models.CASCADE, blank=True)
-    btc = models.CharField(max_length=150, null = True)
-    eth = models.CharField(max_length=150, null = True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True)
+    btc = models.CharField(max_length=150, null = True, blank=True)
+    eth = models.CharField(max_length=150, null = True, blank=True)
+
+    def __str__(self):
+        return self.user.username
 
 
 class Product(models.Model):

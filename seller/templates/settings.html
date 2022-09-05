@@ -10,10 +10,15 @@
 {% block contents %}
 <div>
     <div>
-        <a href="#">Edit Profile</a>
+        <a href="{% url 'profile_details'%}">Edit Profile</a>
         </div>
+
+    {% if store %}
     <div>
         <a href="{% url 'edit_store' store.id %}">Edit Store</a></div>
+    {% else %}
+    <div><a href="{% url 'createstore'%}"> Create Store</a></div>
+    {% endif %}
     <div>
         <a href="{% url 'payments' %}">Payments</a></div>
     <div>

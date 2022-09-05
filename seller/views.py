@@ -1,9 +1,8 @@
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib import messages
-from .forms import ProductForm, StoreForm
+from .forms import ProductForm, StoreForm, PaymentForm
 
 
 
@@ -36,7 +35,7 @@ def create_shop(request):
             messages.success(request, "You Have created your store.")
             return redirect("dashboard")
 
-    return render(request,"createstore.html", store = False)
+    return render(request,"createstore.html")
 
 
 
@@ -75,7 +74,7 @@ def add_products(request):
 
 
 #edit product
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def edit_products(request, product_id):
     store = Profile.objects.filter(user = request.user).first()
     products = Product.objects.filter(profile__user = request.user).all()
@@ -103,7 +102,7 @@ def edit_products(request, product_id):
     return render(request, 'edit_product.html', context)
 
 #delete product
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def delete_product(request, product_id):
     product = Product.objects.get(pk = product_id)
     product.delete()
@@ -112,7 +111,7 @@ def delete_product(request, product_id):
 
 
 #edit store
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def edit_store(request, profile_id):
     store = Profile.objects.get(pk = profile_id)
 
@@ -123,7 +122,7 @@ def edit_store(request, profile_id):
             form = StoreForm(request.POST, request.FILES, instance=store)
             if form.is_valid():
                 form.save()
-            messages.success(request, "CHanges saved")
+            messages.success(request, "Changes saved")
             return redirect("dashboard")
 
         context = {
@@ -162,7 +161,7 @@ def store(request, profile_name):
 
     
 # delete store
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def delete_store(request, store_id):
     store = Profile.objects.get(pk=store_id)
     store.delete()
@@ -201,11 +200,27 @@ def settings(request):
 
     return render( request, "settings.html", context)
 
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def payments(request):
-    pass
+    coins = Coins.objects.filter(user = request.user).first()
 
-@login_required(login_url='login')
+    form = PaymentForm(instance=coins, use_required_attribute=False)
+    if request.method == 'POST':
+        form = PaymentForm(request.POST, instance=coins)
+        if form.is_valid():
+            form.save()
+        
+        messages.success(request, "Address updated")
+        return redirect("payments")
+
+    context ={
+        'coins':coins,
+        'form':form
+    }
+    return render(request, "payments.html", context)
+
+
+@login_required(login_url='account_login')
 def personal_details(request):
     context = {}
     return render(request, "account/profile.html", context)
