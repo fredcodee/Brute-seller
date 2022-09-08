@@ -8,6 +8,16 @@
     <title>view product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'style/store/product.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $("#quantity").change(function(){
+            var productPrice = $("#jsprice").text();
+            var totalPrice = $(this).val() * parseInt(productPrice)
+            $('#price').html(totalPrice)
+          });
+        });
+        </script>
 </head>
 <body>
     <div id="app" style="margin-top: 1px;">
@@ -17,7 +27,7 @@
             <div class="header is-shop">
                 <div style="max-width:1140px;margin:0 auto;position:relative">
                     <div class="header-logo">
-                        <div class="header-logo "><button type="button" class="sidebar-toggler"><span></span></button><a href="/" class="header-logo-image false undefined"><span style="font-size:1.5rem;font-weight:700">twizen</span></a></div>
+                        <div class="header-logo "><button type="button" class="sidebar-toggler"><span></span></button><a href="/" class="header-logo-image false undefined" style="text-decoration:none;"><span style="font-size:1.5rem;font-weight:700">Brute Seller</span></a></div>
                     </div>
                     <div class="header-nav">
                         <div class="header-menu"></div>
@@ -31,7 +41,7 @@
                             <div class="shop-product-info-description with-image">
                                 <div class="shop-product-info-shop">
                                     <img src="{{store.logo.url}}" alt="">
-                                    <span><a href="/">{{store.name}}</a></span>
+                                    <span><a href="{% url 'store' store.name %}" style="text-decoration:none;" >{{store.name |title }}</a></span>
                                 </div>
                                 <div class="cshop-product-info-product">
                                     <div class="shop-product-info-product-title mb-0">{{product.name|title}}</div>
@@ -85,7 +95,7 @@
                                                                 <i class="fa-regular fa-minus"></i>
                                                             </span>
                                                             <span>
-                                                                <input type="number" value="1" max={{product.stock}} />
+                                                                <input type="number" value="1" max={{product.stock}} name ="quantity" id="quantity" />
                                                             </span>
                                                             <span class="sellix-stock-count-picker unselectable false">
                                                                 <i class="fa-regular fa-plus"></i>
@@ -107,9 +117,9 @@
                                                             <div class="sellix-product-total-price unselectable">
                                                                 <span>$</span>
                                                                 <div class="text-transition" style="width: 81px; white-space: nowrap; display: inline-block; position: relative;">
-                                                                    <span style="visibility:hidden" class="text-transition_placeholder">{{product.price}}</span>
+                                                                    <span style="visibility:hidden" class="text-transition_placeholder" id="jsprice">{{product.price}}</span>
                                                                     <div class="text-transition_inner" style="overflow:hidden;display:block;position:absolute;top:0;left:0;height:100%;width:100%">
-                                                                        <div style="opacity: 1; transform: translateY(0%); position: absolute;">{{product.price}}</div>
+                                                                        <div style="opacity: 1; transform: translateY(0%); position: absolute;" id="price">{{product.price}}</div>
 
                                                                     </div>
                                                                 </div>
@@ -118,8 +128,16 @@
                                                     </div>
                                                     <div class="sellix-product-footer">
                                                         <div>
-                                                            <div>
-
+                                                            <div style="
+                                                            margin-bottom: 1rem;">
+                                                                <input type="email" name="email" placeholder="Your email" required >
+                                                            </div>
+                                                            <div style="margin-bottom: 1rem;">
+                                                                <label for="coins" style="color:white;">Choose Cryptocurrency</label>
+                                                                <select name="coin" id="coins">
+                                                                    <option value="btc">Btc</option>
+                                                                    <option value="eth">Eth</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <button type="button" class="button mb-3 w-100">Buy Now</button>

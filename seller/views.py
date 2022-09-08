@@ -174,12 +174,15 @@ def delete_store(request, store_id):
 def view_product(request, profile_name, product_id):
     product = Product.objects.get(pk = product_id)
     get_store = Profile.objects.filter(name = profile_name )
+    coins = Coins.objects.filter(user = request.user).first()
+
 
     if product:
         get_store = get_store.first()
         context={
             'product':product,
-            'store': get_store
+            'store': get_store,
+            'coins': coins,
 
         }
         return render(request, "view_product.html", context)
