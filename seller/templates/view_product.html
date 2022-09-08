@@ -86,7 +86,7 @@
                                             <i class="fas fa-times"></i>
                                         </div>
                                         <div class="sellix-product-body">
-                                            <form action="" method="post">
+                                            <form action="{% url 'order' product.id %}" method="post">
                                                 {% csrf_token%}
                                                 <div class="unselectable w-100">
                                                     <div class="sellix-stock-container">
@@ -132,15 +132,12 @@
                                                             margin-bottom: 1rem;">
                                                                 <input type="email" name="email" placeholder="Your email" required >
                                                             </div>
-                                                            <div style="margin-bottom: 1rem;">
-                                                                <label for="coins" style="color:white;">Choose Cryptocurrency</label>
-                                                                <select name="coin" id="coins">
-                                                                    <option value="btc">Btc</option>
-                                                                    <option value="eth">Eth</option>
-                                                                </select>
+                                                            <div style="margin-bottom: 1rem; text-align: center; color: white;">
+                                                                <small >Btc Address</small>
+                                                                <small >{{coins.btc}}</small>
                                                             </div>
                                                         </div>
-                                                        <button type="button" class="button mb-3 w-100">Buy Now</button>
+                                                        <button type="submit" class="button mb-3 w-100">Buy Now</button>
                                                     </div>
 
                                                 </div>

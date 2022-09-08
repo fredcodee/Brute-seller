@@ -1,8 +1,11 @@
+import profile
+from tabnanny import check
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib import messages
 from .forms import ProductForm, StoreForm, PaymentForm
+from random  import randint
 
 
 
@@ -226,15 +229,37 @@ def personal_details(request):
     return render(request, "account/profile.html", context)
 
 
+def generateId(request):
+    id = randint(1000, 100000000)
+    return str(id)
 
 def order(request, product_id):
     if request.method == "POST":
         product = Product.objects.get(pk = product_id)
         email = request.POST["email"]
         quantity = request.POST['quantity']
-        coin= ""
+        
+        #get coin address
+        profile = Profile.objects.get(name = product.profile.name)
+        user_coins = Coins.objects.filter(user = profile).first()
+       
 
-        return render(request, "review page")
+        #create unique id
+        track = False
+        while not track:
+            tempId = generateId()
+            checkId =Order.objects.get(transaction_id =tempId)
+            if not checkId:
+                track = True
+                transaction_id = tempId
+
+
+        newOrder = Order(product = product, transaction_id= transaction_id, quantity = quantity, email =email, coin = user_coins  )
+        newOrder.save()
+
+        product.stock = product.stock - int(quantity)
+        messages.success(request, "you have Succesfully Purchased")
+        return render(request, "review.html")
 
         
 

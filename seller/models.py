@@ -15,7 +15,6 @@ class Profile(models.Model):
 class Coins(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null= True)
     btc = models.CharField(max_length=150, null = True, blank=True)
-    eth = models.CharField(max_length=150, null = True, blank=True)
 
     def __str__(self):
         return self.user.username
