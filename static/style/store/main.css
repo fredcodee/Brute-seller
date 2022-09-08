@@ -97,6 +97,11 @@ body{
 
   .sellix-banner-avatar-container {
     position: relative;
+    width: 30%;
+  }
+  .sellix-banner-avatar-container img{
+    width: 41%;
+    height: 40%;
   }
 
   .sellix-banner-description {

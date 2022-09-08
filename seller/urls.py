@@ -16,4 +16,5 @@ urlpatterns = [
     path('product/<str:profile_name>/<int:product_id>', views.view_product, name="product"),
     path('settings/general', views.settings, name="settings"),
     path('payments', views.payments, name="payments"),
+    path('product/order/<int:product_id>', views.order, name="order"),
 ]

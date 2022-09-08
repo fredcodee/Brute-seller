@@ -64,10 +64,71 @@
                                 <div>
                                     <div class="sellix-product-card">
                                         <div class="sellix-product-title" style="height:18px">
+                                            <div class="text-transition" style="width: 79px; white-space: nowrap; display: inline-block; position: relative;">
+                                                <span style="visibility:hidden" class="text-transition_placeholder">Purchase</span>
+                                                <div class="text-transition_inner" style="overflow:hidden;display:block;position:absolute;top:0;left:0;height:100%;width:100%">
+                                                    <div style="opacity: 1; transform: translateY(0%); position: absolute;">Purchase
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sellix-product-back">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <div class="sellix-product-body">
+                                            <form action="" method="post">
+                                                {% csrf_token%}
+                                                <div class="unselectable w-100">
+                                                    <div class="sellix-stock-container">
+                                                        <div class="sellix-stock-count">
+                                                            <span class="sellix-stock-count-picker unselectable can-click">
+                                                                <i class="fa-regular fa-minus"></i>
+                                                            </span>
+                                                            <span>
+                                                                <input type="number" value="1" max={{product.stock}} />
+                                                            </span>
+                                                            <span class="sellix-stock-count-picker unselectable false">
+                                                                <i class="fa-regular fa-plus"></i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="sellix-stock-total unselectable">
+                                                            Stock: 
+                                                            <div class="text-transition" style="width: 17px; white-space: nowrap; display: inline-block; position: relative;">
+                                                                <span style="visibility:hidden" class="text-transition_placeholder">{{product.stock }}</span>
+                                                                <div class="text-transition_inner" style="overflow:hidden;display:block;position:absolute;top:0;left:0;height:100%;width:100%">
+                                                                    <div style="opacity: 1; transform: translateY(0%); position: absolute;"> {{product.stock }}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sellix-product-total">
+                                                        <span class="unselectable">Subtotal</span>
+                                                        <div>
+                                                            <div class="sellix-product-total-price unselectable">
+                                                                <span>$</span>
+                                                                <div class="text-transition" style="width: 81px; white-space: nowrap; display: inline-block; position: relative;">
+                                                                    <span style="visibility:hidden" class="text-transition_placeholder">{{product.price}}</span>
+                                                                    <div class="text-transition_inner" style="overflow:hidden;display:block;position:absolute;top:0;left:0;height:100%;width:100%">
+                                                                        <div style="opacity: 1; transform: translateY(0%); position: absolute;">{{product.price}}</div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sellix-product-footer">
+                                                        <div>
+                                                            <div>
+
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="button mb-3 w-100">Buy Now</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
                                             
                                         </div>
-                                        <div></div>
-                                        <div></div>
                                     </div>
                                 </div>
                             </div>

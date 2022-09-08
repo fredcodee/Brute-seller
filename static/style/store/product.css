@@ -317,8 +317,143 @@ html{
   }
 
 
+  .text-transition_inner {
+    overflow: visible !important;
+  }
+  .sellix-product-back {
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--darkFontColor);
+  }
+
+  .fas, .fa-solid {
+    font-family: "Font Awesome 6 Pro";
+    font-weight: 900;
+  }
+
+  .w-100 {
+    width: 100% !important;
+  }
+
+  .sellix-stock-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sellix-stock-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+    border: 1px solid var(--borderColor);
+    height: 36px;
+    border-radius: .5rem;
+    padding: .5rem;
+    font-size: 14px;
+    background: var(--darkColor);
+  }
+
+  .sellix-stock-count-picker {
+    opacity: .75;
+    padding: .25rem;
+  }
 
 
+  .sellix-stock-count-picker.can-click i {
+    color: var(--darkColor);
+  }
+  .sellix-stock-count i {
+    cursor: pointer;
+    color: var(--darkFontColor);
+  }
 
+  .sellix-stock-count input {
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    font-size: 14px;
+    min-width: 50px;
+    color: var(--darkFontColor);
+    font-family: "Inter Var",sans-serif !important;
+  }
 
+  .sellix-stock-count-picker {
+    opacity: .75;
+    padding: .25rem;
+  }
 
+  .sellix-stock-count i {
+    cursor: pointer;
+    color: var(--darkFontColor);
+  }
+
+  .sellix-stock-total {
+    font-size: 14px;
+    color: var(--darkFontColor);
+    opacity: .7;
+    margin-left: 0;
+    display: flex;
+  }
+
+  .sellix-stock-total .text-transition_inner {
+    overflow: visible !important;
+  }
+
+  .sellix-product-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-size: 14px;
+    color: var(--darkFontColor);
+  }
+
+  .sellix-product-total-price {
+    font-size: 24px;
+    color: var(--buttonColor);
+    font-weight: 600;
+    display: flex;
+    overflow: visible;
+  }
+
+  .ReactCollapse--collapse {
+    transition: height .5s;
+  }
+  .sellix-product-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-size: 14px;
+    color: var(--darkFontColor);
+  }
+  .pt-2 {
+    padding-top: .5rem !important;
+  }
+  .mt-0 {
+    margin-top: 0 !important;
+  }
+
+  .sellix-product-footer {
+    margin-top: 1.5rem;
+  }
+  .sellix-store .button {
+    border-color: var(--borderColor);
+    background-color: #5F40E5;
+  }
+  .button {
+    position: relative;
+    overflow: hidden;
+    transition: all .25s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    font-weight: 400 !important;
+    font-family: "Inter Var",sans-serif !important;
+    border-radius: .25rem;
+    border: 1px solid var(--gridLine);
+    color: white;
+    
+  }

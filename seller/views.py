@@ -191,11 +191,8 @@ def view_product(request, profile_name, product_id):
 @login_required(login_url="login")
 def settings(request):
     store = Profile.objects.filter(user = request.user).first()
-    #edit profile
-    #edit coins
     context={
         'store':store,
-
     }
 
     return render( request, "settings.html", context)
@@ -224,9 +221,19 @@ def payments(request):
 def personal_details(request):
     context = {}
     return render(request, "account/profile.html", context)
-#edit profile
 
-#user featues
-#buy
+
+
+def order(request, product_id):
+    if request.method == "POST":
+        product = Product.objects.get(pk = product_id)
+        email = request.POST["email"]
+        quantity = request.POST['quantity']
+        coin= ""
+
+        return render(request, "review page")
+
+        
+
 #reviews
 #ratings
