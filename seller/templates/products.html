@@ -4,27 +4,35 @@
 {% endblock %}
 
 {% block header %}
-<h1 class="h3 mb-0 text-gray-800">Products</h1>
+<h1 class="h3 mb-0 text-gray-800 text-small">Products Page</h1>
 {% endblock %}
 
 {% block contents %}
-<div style="text-align:center;">
-<a href="{% url 'add_product' %}" ><button class="btn btn-primary">Add Products</button></a>
-</div>
 
-<div class="list">
-    {% if products|length > 0 %}
-        {% for product in products %}
-            <div class="card mb-4 py-3 border-left-primary" style="margin-top:2rem;">
-                <div class="card-body">
-                    <h2 style="color:black;">{{product.name|title}} -${{product.price}}</h2> 
-                    <a href="{% url 'edit_product' product.id %}">Edit</a> | <a href="{% url 'delete_product' product.id %}" style="color:red;">Delete</a>
-                </div>
-            </div>
-        {%endfor%}
-    {% else%}
-        <h1 class="h3 mb-1 text-gray-800">You have no Products to sell</p>
-    {% endif %}
-</div>
-        
+{% if store %}
+    <div style="text-align:center;">
+        <a href="{% url 'add_product' %}" ><button class="btn btn-primary">Add Products</button></a>
+    </div>
+    <div class="list">
+            {% if products|length > 0 %}
+                {% for product in products %}
+                    <div class="card mb-4 py-3 border-left-primary" style="margin-top:2rem;">
+                        <div class="card-body">
+                            <h2 style="color:black;">{{ product.name|title }} - ${{ product.price }}</h2> 
+                            <a href="{% url 'edit_product' product.id %}">Edit</a> | <a href="{% url 'delete_product' product.id %}" style="color:red;">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="h3 mb-1 text-gray-800">You have no products to sell</p>
+            {% endif %}
+    </div>
+{% else %}
+    <div class = "text-center">
+        <p class="h3 mb-1 text-gray-800r">You have no store</p>
+        <a href="{% url 'createstore'%}"><button class="btn btn-primary">Create Store</button></a>
+    </div>
+{% endif %}
+
+
 {% endblock %}

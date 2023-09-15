@@ -103,7 +103,7 @@
                         {% if store %}
                             <a class="collapse-item" href="{% url 'edit_store' store.id %}">My Store</a>
                         {% endif %}
-                        <a class="collapse-item" href="{% url 'payments'%}">Payments</a>
+                        {% comment %} <a class="collapse-item" href="{% url 'payments'%}">Payments</a> {% endcomment %}
                         <a class="collapse-item" href="#">My notification</a>
                         <a class="collapse-item" href="accounts/logout/">Log Out</a>
                     </div>
@@ -113,13 +113,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            {% comment %} <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -137,21 +132,7 @@
                         <a class="collapse-item" href="#">Blank Page</a>
                     </div>
                 </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
+            </li> {% endcomment %}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -357,7 +338,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         {% for message in messages %}
-                            <p class="alert alert-secondary" style="text-align: center;">{{ message }}</p>
+                            <p class="alert alert-secondary" style="text-align: center;color: white;background-color: #F7AE9E;">{{ message }}</p>
                         {% endfor %}
                         {% block header %}
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>

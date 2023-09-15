@@ -1,10 +1,9 @@
-import profile
-from tabnanny import check
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib import messages
-from .forms import ProductForm, StoreForm, PaymentForm
+from .forms import ProductForm, StoreForm
 from random  import randint
 
 
@@ -17,6 +16,7 @@ def home(request):
 @login_required(login_url="login")
 def dashbaord(request):
     store = Profile.objects.filter(user = request.user).first()
+    
     
     context={'store':store,}
     return render(request, "index.html", context)
@@ -177,7 +177,7 @@ def delete_store(request, store_id):
 def view_product(request, profile_name, product_id):
     product = Product.objects.get(pk = product_id)
     get_store = Profile.objects.filter(name = profile_name )
-    coins = Coins.objects.filter(user = request.user).first()
+    # coins = Coins.objects.filter(user = request.user).first()
 
 
     if product:
@@ -185,7 +185,7 @@ def view_product(request, profile_name, product_id):
         context={
             'product':product,
             'store': get_store,
-            'coins': coins,
+            # 'coins': coins,
 
         }
         return render(request, "view_product.html", context)
@@ -204,23 +204,23 @@ def settings(request):
     return render( request, "settings.html", context)
 
 @login_required(login_url='account_login')
-def payments(request):
-    coins = Coins.objects.filter(user = request.user).first()
+# def payments(request):
+#     coins = Coins.objects.filter(user = request.user).first()
 
-    form = PaymentForm(instance=coins, use_required_attribute=False)
-    if request.method == 'POST':
-        form = PaymentForm(request.POST, instance=coins)
-        if form.is_valid():
-            form.save()
+#     form = PaymentForm(instance=coins, use_required_attribute=False)
+#     if request.method == 'POST':
+#         form = PaymentForm(request.POST, instance=coins)
+#         if form.is_valid():
+#             form.save()
         
-        messages.success(request, "Address updated")
-        return redirect("payments")
+#         messages.success(request, "Address updated")
+#         return redirect("payments")
 
-    context ={
-        'coins':coins,
-        'form':form
-    }
-    return render(request, "payments.html", context)
+#     context ={
+#         'coins':coins,
+#         'form':form
+#     }
+#     return render(request, "payments.html", context)
 
 
 @login_required(login_url='account_login')
@@ -241,7 +241,7 @@ def order(request, product_id):
         
         #get coin address
         profile = Profile.objects.get(name = product.profile.name)
-        user_coins = Coins.objects.filter(user = profile).first()
+        # user_coins = Coins.objects.filter(user = profile).first()
        
 
         #create unique id
